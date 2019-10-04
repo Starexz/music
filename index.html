@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<!--
+	欢迎体验HBuilder，最快的web编码工具。
+	烈马是需要驯服的，玩不转HBuilder，你快不了。
+	按照lessson1.txt的指导敲击键盘，你会发现HBuilder的神奇所在。
+	你可以用任何其他工具敲这段代码，至少比HBuilder慢5倍!
+	写几十行代码，来一场无鼠标编程之旅，看看who is e。
+	Are you ready?
+	小贴士：可以把lesson1.txt拖到右边或下边，实现分窗格并排浏览。
+	在注释后的第12行开始敲下lesson1里的按键。
+-->
+
+
+<html>
+	<head>
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.1.0.min.css"/>
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css" />
+	<style>
+		.lyric {
+			width: 800px;
+			margin: 150px auto;
+			height: 400px;
+			overflow-y: scroll;
+			text-align: center;
+		}
+		.lyric .title {
+			padding: 80px 0;
+		}
+		.content {
+			height: 250px
+		}
+		.player {
+			width: 800px;
+			margin: 0 auto;
+			text-align: center;
+			margin-top: 50px;
+		}
+		.bottom {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 1440px;
+			background-color: rgba(0,0,0,0.7);
+			height: 50px;
+			/*box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5);*/
+			border-top: 1px solid #000;
+		}
+		.bottom .controller {
+			overflow: hidden;
+			width: 80%;
+			margin: 0 auto;
+		}
+		.bottom .controller .con {
+			float: left;
+			margin-left: 10px;
+		}
+		.bottom .controller .play {
+			width: 20%;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+		.bottom .controller .process {
+			width: 50%;
+			height: 50px;
+		}
+		.bottom .controller .operate {
+			width: 20%;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+		.progress {
+			float: left;
+			margin-top: 5px;
+/*			width: 70%;*/
+			height: 8px;
+			overflow: visible;
+			margin-bottom: 0;
+			/*background-image: linear-gradient(to bottom,#000000,#222222);*/
+		}
+		.process .progress {
+			width: 350px;
+		}
+		.operate .progress {
+			width: 140px;
+		}
+		h5{
+			margin: 3px auto;
+			color: #fff;
+		}
+		.progress .bar {
+			position: relative;
+			background-image: -webkit-gradient(linear,0 0,0 100%,from(#C20C0C),to(#a40011));
+			border-top-left-radius: 4px;
+			border-bottom-left-radius: 4px;
+		}
+		.point {
+		    position: absolute;
+		    top: -5px;
+		    left: 100%;
+		    margin-left: -10px;
+		    background: url(img/iconall.png) -2px -253px no-repeat;
+		    width: 35px;
+		    height: 20px;
+		    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+		    cursor: pointer;
+		}
+		.play-time {
+			width: 100px;
+			float: left;
+			margin-left: 10px;
+			color: #CCCCCC;
+		}
+		.con a {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			margin: 10px 10px;
+		}
+		.start {
+			background: url(img/icon.png) -28px 0px no-repeat;
+		}
+		.front {
+			background: url(img/icon.png) -28px -90px no-repeat;
+		}
+		.next {
+			background: url(img/icon.png) -28px -60px no-repeat;
+		}
+		.volm-progress {
+			margin-top: 26px;
+			height: 3px;
+		}
+		.volm-icon {
+			float: left;
+			width: 18px;
+			height: 18px;
+			margin: 20px 15px;
+			background: url(img/icon.png) -28px -295px no-repeat;
+		}
+		.volm-point {
+			top: -6px;
+		}
+	</style>
+	<body>
+		<div class="lyric">
+			<p class="title">
+				<h4>
+					sdkfgjsdklgkfdljgkl<br>
+				asfskdjfklsdjf
+				</h4>
+			</p>
+			<div class="content"></div>
+		</div>
+		<div class="player">
+			<audio src="music/Lora - Release The Pain.mp3" id="music" controls="controls"></audio>
+		</div>
+		<div class="bottom">
+			<div class="controller">
+				<div class="con play">
+					<a class="front" href="javascript:;"></a>
+					<a class="start" href="javascript:;" data-play="1"></a>
+					<a class="next" href="javascript:;"></a>
+				</div>
+				<div class="con process">
+					<h5>title</h5>
+					<div class="progress">
+						<div class="bar bar-danger active">
+							<i class="point" data-move="0"></i>
+						</div>
+					</div>
+					<div class="play-time">
+						<span class="current-time">00:00</span>/<span class="total-time">00:00</span>
+					</div>
+				</div>
+				<div class="con operate">
+					<div class="volm-icon"></div>
+					<div class="progress volm-progress">
+						<div class="bar bar-danger">
+							<i class="point volm-point"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/progressSlider.js"></script>
+		<script src="js/voiceSlider.js"></script>
+		<script src="js/player.js"></script>
+	</body>
+</html>
+
+
+
+
+
+
+
+<!--
+这里是最终敲完的正确代码，可用于比对
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8"/>
+		<script src="test.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function WhoisE () {
+				var e;
+				e = document.getElementsByClassName("classA");
+				e = document.getElementsByTagName("div");
+				e = document.getElementById("d1");
+				e.setAttribute("align","center");
+				e.setAttribute("data-test","2");
+				e.style.fontFamily="微软雅黑";
+				e.style.backgroundImage="url(img/HBuilder.png)";
+				e.style.cssText="background-image: url(img/HBuilder.png);";
+				switch (e.style.display){
+					case "-webkit-box":
+						break;
+					default:
+						break;
+				}
+				if (e.getAttribute("class")!="classA") {
+					e.className="classA";
+				}
+				e.innerHTML="<font color='#CCCCCC'></font>";
+				e = document.getElementById("a1");
+				e.href="#a1";
+				e.target="_blank";
+				e = new Image();
+				e.src="img/HBuilder.png";
+				e = window.indexedDB || window.webkitIndexedDB || window.msIndexedDB || window.mozIndexedDB;
+				if (typeof(e)!="undefined") {
+					e.open("test");
+				}
+				var head = document.getElementsByTagName("head")[0];
+				with (head){
+					var l = lastElementChild;
+					removeChild(l);
+				}
+				e = document.createElement("link");
+				e.rel="stylesheet";
+				e.type="text/css";
+				e.href="test.css";
+				head.appendChild(e);
+				var ss="e is ";
+				if (e.getAttribute("data-test")==null) {
+					ss=ss+e.outerHTML;
+				} else{
+					ss=ss+"unknow";
+				}
+				alert(ss)
+			}
+			addEventListener("DOMContentLoaded",function () {
+				finishLesson(1)
+			})
+		</script>
+		<style type="text/css">
+			body{
+				text-align: center;
+				-webkit-user-select: none;
+			}
+			input[type=button]{
+				width: 90px;
+			}
+			ul{display: none}
+			#d1{
+				font-family: "微软雅黑";
+				background-image: url(img/HBuilder.png)
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="test.css"/>
+	</head>
+	<body>
+		<img src="img/HBuilder.png"/>
+		<br />
+		<div id="d1" class="classA" data-test = "1"></div>
+		<a href="#a1" id="a1"></a>
+		<ul>
+			<li></li>
+		</ul>
+		<nav>&nbsp;</nav>
+		<input type="button" name="" id="" value="who is e" onclick="WhoisE()" />
+	</body>
+</html>
+-->

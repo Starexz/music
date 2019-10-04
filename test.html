@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+		<title></title>
+	</head>
+	<style>
+		#ex1Slider .slider-selection {
+			background: #BABABA;
+		}
+	</style>
+	<body>
+		<audio src="music/有澤孝紀 - 勝利~善のテーマ.mp3" id="music"  controls="controls"></audio>
+		<button id="button">点击</button>
+		<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+	</body>
+	
+	<script src="https://cdn.bootcss.com/bootstrap-slider/10.0.0/bootstrap-slider.js"></script>
+	<script>
+		var music = document.getElementById("music");
+		document.getElementById("button").addEventListener("click", function() {
+			music.currentTime = 21;
+			console.log(music.currentTime);
+		})
+		
+		music.addEventListener("loadstart", function() {
+			console.log("loadstart");
+		})
+		
+		music.addEventListener("progress", function() {
+			console.log("progress");
+		})
+		
+		music.addEventListener("error", function() {
+			console.log("error");
+		})
+		
+		music.addEventListener("canplay", function() {
+			console.log("canplay");
+		})
+		music.addEventListener("canplaythrough", function() {
+			console.log("canplaythrough");
+		})
+		
+		(function($) {
+			$("#button").click(function() {
+				
+			})
+		})(jQuery)
+	</script>
+</html>
