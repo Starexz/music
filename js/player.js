@@ -61,6 +61,16 @@ music.addEventListener("timeupdate", function() {
 	$.lyricScroll(music, lyric);
 })
 
+music.addEventListener("ended", function() {
+	music.currentTime = 0;
+	clearInterval(interval);
+	$(".start").css("background-position", "-28px 0px");
+	$(".start").attr('title', '播放');
+	$(".start").data("play", "1");
+	$(".current-time").text("00:00")
+	$.lyricScroll(music, lyric);
+})
+
 music.addEventListener("canplaythrough", function() {
 	song_time = $.secondToMin(music.duration);
 	$(".total-time").text(song_time);
@@ -143,6 +153,9 @@ jQuery.lyricScroll = function(musicObj, lyric) {
 		$(".process .bar").css("width", progress + "%");	
 	}
 	var c_time = Math.round(musicObj.currentTime);
+	if(c_time == 0) {
+		$(".lyric").animate({scrollTop: '0px'}, 800);
+	}
 	if(typeof(lyric[c_time]) !== "undefined" && music.paused === false) {
 		/* 歌词滚动，当前歌词变色 */
 		if($("#lrc_"+c_time).css('color') != 'rgb(255, 0, 0)') {
