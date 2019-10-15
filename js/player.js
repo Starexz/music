@@ -8,20 +8,33 @@ var cur_time = 0;
 // 计时器，用于实时显示当前播放到的时间
 var interval = null;
 
-
-$.get("music/lyric.lrc", function(content) {
-	var list = content.split("\n");
-	var html = "";
-	lyric = parseLyric(list);
-	for(var i in lyric) {
-		html += "<p id='lrc_"+i+"'>"+lyric[i]+"</p>";
+$.ajax({
+	url: 'music/lyric.lrc',
+	type: 'get',
+	async: false,
+	success: function(content) {
+		var list = content.split("\n");
+		var html = "";
+		lyric = parseLyric(list);
+		for(var i in lyric) {
+			html += "<p id='lrc_"+i+"'>"+lyric[i]+"</p>";
+		}
+		$(".lyric .content").html(html);
 	}
-	$(".lyric .content").html(html);
 })
+// $.get("music/lyric.lrc", function(content) {
+// 	var list = content.split("\n");
+// 	var html = "";
+// 	lyric = parseLyric(list);
+// 	for(var i in lyric) {
+// 		html += "<p id='lrc_"+i+"'>"+lyric[i]+"</p>";
+// 	}
+// 	$(".lyric .content").html(html);
+// })
 
 var music = document.getElementById("music");
 music.volume = 0.3;
-//$(".volm-progress .bar").css({"width":　"30%"});
+$(".volm-progress .bar").css({"width":　"30%"});
 
 $(".front").click(function() {
 	music.currentTime = 21;
@@ -30,7 +43,7 @@ $(".front").click(function() {
 
 
 var musicProgress = new ProgressSlider();
-musicProgress.progress(".process .point", 390, music);
+musicProgress.progress(".process .point", 390, music, 0, lyric);
 musicProgress.endDrag(music);
 
 
@@ -101,6 +114,7 @@ jQuery.secondToMin = function(s) {
 jQuery.startMusic = function(musicObj, dom) {
 	if($(dom).data("play") == "1") {
 		$(dom).css("background-position", "-28px -30px");
+		$(dom).attr('title', '暂停');
 		musicObj.play();
 		interval = setInterval(function() {
 			if(cur_time <= parseInt(music.duration)) {
@@ -112,6 +126,7 @@ jQuery.startMusic = function(musicObj, dom) {
 	} else {
 		clearInterval(interval);
 		$(dom).css("background-position", "-28px 0px");
+		$(dom).attr('title', '播放');
 		musicObj.pause();	
 		$(dom).data("play", "1");
 	}

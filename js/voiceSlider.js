@@ -16,12 +16,20 @@ var voiceSlider = function() {
 			_that.mousemove = true;
 		})
 		
-		$(".operate .progress").on("mousemove", function(e) {
-			if(_that.voice_tag === true && _that.mousemove === true) {
+		// $(".operate .progress").on("mousemove", function(e) {
+		// 	if(_that.voice_tag === true && _that.mousemove === true) {
+		// 		console.log(e.pageX);
+		// 		_that.move_distance = (e.pageX - init_pageX) / 140 * 100;
+		// 		_that.changeVoice(music);
+		// 	}
+		// })
+
+		$(".operate .progress").on("click", function(e) {
+			// if(_that.voice_tag === true && _that.mousemove === true) {
 				console.log(e.pageX);
 				_that.move_distance = (e.pageX - init_pageX) / 140 * 100;
 				_that.changeVoice(music);
-			}
+			// }
 		})
 		
 		$(".operate .progress").on("mouseup", function(e) {
@@ -35,8 +43,7 @@ var voiceSlider = function() {
 	this.changeVoice = function(music) {
 		if(this.move_distance <= 100) {
 			music.volume = this.move_distance / 100;
+			$(".volm-progress .bar").css({"width":　this.move_distance + "%"});
 		}
-		
-		$(".volm-progress .bar").css({"width":　this.move_distance + "%"});
 	}
 }
