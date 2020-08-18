@@ -1,0 +1,130 @@
+#music {
+    display: none;
+}
+.lyric {
+    width: 800px;
+    margin: 150px auto;
+    height: 600px;
+    overflow-y: scroll;
+    text-align: center;
+}
+.lyric .title {
+    padding: 80px 0;
+}
+.content {
+    height: 250px
+}
+.player {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+}
+.bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    height: 50px;
+    /*box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5);*/
+    border-top: 1px solid #000;
+}
+.bottom .controller {
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    min-width: 1300px;
+}
+.bottom .controller .con {
+    float: left;
+    margin-left: 10px;
+}
+.bottom .controller .play {
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.bottom .controller .process {
+    width: 50%;
+    height: 50px;
+    min-width: 740px;
+}
+.bottom .controller .operate {
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.progress {
+    float: left;
+    width: 85%;
+    height: 8px;
+    overflow: visible;
+    margin-bottom: 0;
+    /*background-image: linear-gradient(to bottom,#000000,#222222);*/
+}
+.process .progress {
+    width: 85%;
+}
+.operate .progress {
+    width: 140px;
+}
+h5{
+    margin: 3px auto;
+    color: #fff;
+}
+.progress .bar {
+    position: relative;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#C20C0C),to(#a40011));
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.point {
+    position: absolute;
+    top: -5px;
+    left: 100%;
+    margin-left: -10px;
+    background: url(../img/iconall.png) -2px -253px no-repeat;
+    width: 35px;
+    height: 20px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+.play-time {
+    width: 100px;
+    float: left;
+    margin-left: 10px;
+    color: #CCCCCC;
+    line-height: 8px;
+}
+.con a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 10px 10px;
+}
+.start {
+    background: url(../img/icon.png) -28px 0px no-repeat;
+}
+.front {
+    background: url(../img/icon.png) -28px -90px no-repeat;
+}
+.next {
+    background: url(../img/icon.png) -28px -60px no-repeat;
+}
+.volm-progress {
+    margin-top: 26px;
+    height: 3px;
+}
+.volm-icon {
+    float: left;
+    width: 18px;
+    height: 18px;
+    margin: 20px 15px;
+    background: url(../img/icon.png) -28px -295px no-repeat;
+}
+.volm-point {
+    top: -6px;
+}
